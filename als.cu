@@ -603,7 +603,7 @@ get_hermitianT10(const int batch_offset, float* tt,
 		for ( int i = 0; i < N; i++ ) {
 			int end = ((2*N-i)*(i+1))/2;
 			if(threadIdx.x < end){
-				tile_x = i * T10;
+				tile_x = i * T10; // 
 				tile_y = (N + threadIdx.x - end) * T10;
 				break;
 			}
@@ -724,7 +724,7 @@ float doALS(const int* csrRowIndexHostPtr, const int* csrColIndexHostPtr, const 
 	#endif
 
 	printf("*******start iterations...\n");
-	for(int iter = 0; iter < ITERS ; iter ++){
+	for(int iter = 0; iter < ITERS ; iter ++){ // iter 횟수 만큼 updateX, updateTheta 수행
 		#ifdef DEBUG
 		printf("---------------------------ALS iteration %d, update X.----------------------------------\n", iter);
 		t0 = seconds();
